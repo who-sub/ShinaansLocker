@@ -104,12 +104,51 @@ header{
         <div class="code-box">
             <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
 <pre id="code1">
-#include &lt;stdio.h&gt;
-
-int main() {
-    printf("Hello World");
-    return 0;
-}
+PROGRAM 1
+Write a program to convert numbers into words using Enumerations with constructors, 
+methods and instance variables.(INPUT RANGE-0 TO 99999) 
+import java.util.*;
+enum numberword { 
+ZERO(0, "ZERO"), ONE(1, "ONE"), TWO(2, "TWO"), THREE(3, "THREE"), FOUR(4, "FOUR"), 
+FIVE(5, "FIVE"), SIX(6, "SIX"), SEVEN(7, "SEVEN"), EIGHT(8, "EIGHT"), NINE(9, "NINE"), 
+TEN(10, "TEN"), ELEVEN(11, "ELEVEN"), TWELVE(12, "TWELVE"), HIRTEEN(13, 
+"THIRTEEN"), FOURTEEN(14, "FOURTEEN"), FIFTEEN(15, "FIFTEEN"), SIXTEEN(16, 
+"SIXTEEN"), SEVENTEEN(17, "SEVENTEEN"), EIGHTEEN(18, "EIGHTEEN"),
+NINETEEN(19, "NINETEEN"), TWENTY(20, "TWENTY"), THIRTY(30, "THIRTY"), 
+FORTY(40, "FORTY"), FIFTY(50, "FIFTY"), SIXTY(60, "SIXTY"), SEVENTY(70, 
+"SEVENTY"), EIGHTY(80, "EIGHTY"), NINETY(90, "NINETY"); 
+ 
+private final int value; 
+private final String word; 
+// Constructor 
+numberword(int value, String word) { 
+ this.value = value; 
+ this.word = word; 
+ } 
+// Method to get word by value 
+public static String getword(int value) { 
+ for (numberword nw : numberword.values()) { 
+ if (nw.value == value) { 
+ return nw.word; 
+ } 
+ } 
+ return ""; 
+ } 
+} 
+public class numbertowords 
+{ 
+ public static void main(String[] args) { 
+ Scanner sc = new Scanner(System.in); 
+ System.out.print("Enter a number (0-99999): "); 
+ int num = sc.nextInt(); 
+ if (num < 0 || num > 99999) { 
+ System.out.println("Out of range!"); 
+ } else if (num == 0) { 
+ System.out.println(numberword.ZERO.getword(0)); 
+ } else { 
+ System.out.println(converttowords(num).trim()); 
+ } 
+ }
 </pre>
         </div>
 
