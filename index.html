@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeHarbor</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eef6ff;
+    color:#222;
+}
+
+header{
+    background:#4da3ff;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.buttons button{
+    background:#4da3ff;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.buttons button:hover{
+    background:#2f8cff;
+}
+
+.section{
+    margin-top:40px;
+}
+
+.code-box{
+    background:#1e1e1e;
+    color:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    position:relative;
+    overflow-x:auto;
+}
+
+.copy-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:#4da3ff;
+    border:none;
+    color:white;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.copy-btn:hover{
+    background:#2f8cff;
+}
+
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CodeHarbor</h1>
+    <p>Store and Copy Programs Easily</p>
+</header>
+
+<div class="container">
+
+    <div class="buttons">
+        <button onclick="showPart('partA')">Part A</button>
+        <button onclick="showPart('partB')">Part B</button>
+    </div>
+
+    <div id="partA" class="section hidden">
+        <h2>Part A Programs</h2>
+
+        <div class="code-box">
+            <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
+<pre id="code1">
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello World");
+    return 0;
+}
+</pre>
+        </div>
+
+    </div>
+
+    <div id="partB" class="section hidden">
+        <h2>Part B Programs</h2>
+
+        <div class="code-box">
+            <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+<pre id="code2">
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
+</pre>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function showPart(partId){
+
+    document.getElementById('partA').classList.add('hidden');
+    document.getElementById('partB').classList.add('hidden');
+
+    document.getElementById(partId).classList.remove('hidden');
+}
+
+function copyCode(codeId){
+
+    let code=document.getElementById(codeId).innerText;
+
+    navigator.clipboard.writeText(code);
+
+    alert("Code Copied!");
+}
+
+</script>
+
+</body>
+</html>
