@@ -330,11 +330,214 @@ case 4: // Remove element
 
 <pre id="code4">
 
-PASTE YOUR PROGRAM HERE
+package parta4; 
+import java.util.Scanner; 
+public class PartA4 { 
+public static void main(String[] args) { 
+Scanner scanner=new Scanner(System.in); 
+System.out.println("Enter a string:"); 
+String input=scanner.nextLine(); 
+String swappedString=swapPairsInEventWords(input); 
+System.out.println("Swapped string:"+swappedString); 
+String toggledString=toggleCharacters(input); 
+System.out.println("Toggled string:"+toggledString); 
+scanner.close(); 
+ } 
+public static String swapPairsInEventWords(String input) { 
+StringBuilder result=new StringBuilder(); 
+String[] words=input.split("\\s+"); 
+for(String word: words){ 
+if(word.length()%2==0){ 
+StringBuilder swappedWord=new StringBuilder(); 
+for(int i=0;i<word.length()-1;i+=2){ 
+swappedWord.append(word.charAt(i+1)).append(word.charAt(i)); 
+}
+word=swappedWord.toString(); 
+result.append(word).append(" "); 
+ } 
+ }
+return result.toString().trim();
+} 
+ public static String toggleCharacters(String input) { 
+StringBuilder result=new StringBuilder(); 
+for(char ch: input.toCharArray()){ 
+if(Character.isLowerCase(ch)){ 
+result.append(Character.toUpperCase(ch)); 
+}else if(Character.isUpperCase(ch)){ 
+result.append(Character.toLowerCase(ch));
+}else{ 
+result.append(ch); 
+} 
+} 
+return result.toString(); 
+} 
+}
 
 </pre>
 
 </div>
+     <div class="code-box">
+    <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+
+<pre id="code5">
+<html>
+ <head>
+ <head>
+<title>Voting Eligibility Check</title>
+<style> form {
+max-width: 300px;
+padding: 20px;
+background-color: lightskyblue; }
+</style>
+</head>
+<body>
+<h2>Check Voting Eligibility</h2>
+<form action=" votingeligibility" method="post">
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required><br><br>
+<label for="age">Age:</label>
+<input type="number" id="age" name="age" required><br><br>
+<center><input type="submit" value="Check Eligibility"></center>
+</form>
+</body>
+</html>
+votingeligibility.java:
+import java.io.IOException; 
+import java.io.PrintWriter; 
+import jakarta.servlet.ServletException; 
+import jakarta.servlet.annotation.WebServlet; 
+import jakarta.servlet.http.HttpServlet; 
+import jakarta.servlet.http.HttpServletRequest; 
+import jakarta.servlet.http.HttpServletResponse; 
+@WebServlet("/votingeligibility") 
+public class votingeligibility extends HttpServlet { 
+protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException { 
+PrintWriter out = response.getWriter(); 
+try { 
+String name = request.getParameter("name"); 
+String ag1 = request.getParameter("age"); 
+out.println("<html><title>Voting Eligibility Result</title>"); 
+out.println("<body>"); 
+out.println("<h2>Voting Eligibility Result</h2>"); 
+int age = Integer.parseInt(ag1); 
+if (age >= 18) { 
+//out.println("<h3 style='color: green;'>"); 
+out.println("<h3 style='color: green;'>"); 
+out.println(name + ", you are ELIGIBLE to vote!");
+out.println("</h3>"); 
+ } else { 
+ out.println("<h3 style='color: red;'>"); 
+ out.println(name + ", you are NOT eligible to vote yet. Minimum age required is 18."); 
+ out.println("</h3>"); 
+ } 
+out.println("</body></html>"); 
+ } catch (NumberFormatException e) { 
+ out.println("invalid age entered. Please enter a valid number."); 
+ } 
+} 
+}
+
+</pre>
+
+</div>
+    <div class="code-box">
+    <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+
+<pre id="code6">
+
+<%@ page language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Fibonacci and Prime Numbers</title>
+</head>
+<body>
+ <h2>First 10 Fibonacci Numbers:</h2>
+ <% 
+ int n = 10;
+ int[] fibonacci = new int[n];
+ fibonacci[0] = 0;
+ fibonacci[1] = 1;
+ for (int i = 2; i < n; i++) {
+ fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+ }
+ for (int num : fibonacci) {
+ out.println(num + "<br>");
+ }
+ %>
+ 
+ <h2>First 10 Prime Numbers:</h2>
+ <% 
+ int count = 0;
+ int num = 2;
+ while (count < 10) {
+ boolean isPrime = true;
+ for (int i = 2; i <= Math.sqrt(num); i++) {
+ if (num % i == 0) {
+ isPrime = false;
+ break;
+ }
+ }
+ if (isPrime) {
+ out.println(num + "<br>");
+ count++;
+ }
+ num++;
+ }
+ %>
+</body>
+</html>
+
+</pre>
+
+</div>
+     <div class="code-box">
+    <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+
+<pre id="code7">
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>File Downloader</title> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head> 
+<body> 
+<a href="FileDownloader?filename=mycv.txt">Download My CV</a> 
+</body> 
+</html>
+FileDownloader.java:
+package com; 
+import java.io.IOException; 
+import java.io.FileInputStream; 
+import java.io.OutputStream; 
+import javax.servlet.ServletException; 
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+public class FileDownloader extends HttpServlet { 
+protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException { 
+String fname=request.getParameter("filename");
+response.setContentType("text/plaintext"); 
+response.setHeader("Content-Disposition", "attachment;filename=\""+fname+" \""); 
+OutputStream os=response.getOutputStream(); 
+FileInputStream fis=new FileInputStream("C:\\3bca\\mycv.txt"); 
+int i=0; 
+while((i=fis.read())!=-1){ 
+os.write(i); 
+} 
+fis.close(); 
+os.close(); 
+} 
+}
+
+</pre>
+
+</div>
+     
     </div>
 
     <div id="partB" class="section hidden">
@@ -342,14 +545,140 @@ PASTE YOUR PROGRAM HERE
 
         <div class="code-box">
             <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
-<pre id="code2">
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
-    }
+<pre id="code1">
+TaxInterface.java 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+public interface TaxInterface extends Remote {
+double calculateTax(double income) throws RemoteException;
+}
+Tax.java
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+public class Tax extends UnicastRemoteObject implements TaxInterface {
+ public Tax() throws RemoteException {
+ super();
+}
+public double calculateTax(double income) throws RemoteException {
+double tax = 0;
+if (income <= 300000) {
+ tax = 0;
+} else if (income <= 600000) {
+ tax = (income - 300000) * 0.05;
+} else if (income <= 900000) {
+ tax = (300000 * 0.05) + (income - 600000) * 0.10;
+} else if (income <= 1200000) {
+ tax = (300000 * 0.05) + (300000 * 0.10) + (income - 900000) * 0.15;
+} else if (income <= 1500000) {
+ tax = (300000 * 0.05) + (300000 * 0.10) + (300000 * 0.15) + (income - 1200000) * 0.20;
+} else {
+tax = (300000 * 0.05) + (300000 * 0.10) + (300000 * 0.15)+ (300000 * 0.20) + (income - 1500000) 
+*0.30;
+}
+ return tax;
+}
+}
+TaxServer.java
+import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
+public class TaxServer {
+public static void main(String[] args) {
+try {
+ LocateRegistry.createRegistry(1099);
+ Tax taxServant = new Tax();
+ Naming.rebind("TaxService", taxServant);
+ System.out.println("Tax Server is ready.");
+} 
+catch (Exception e) {
+ System.out.println("Server Error: " + e);
+ }
+ }
+}
+TaxClient.java
+import java.rmi.Naming;
+import java.util.Scanner;
+public class TaxClient {
+public static void main(String[] args) {
+try {
+ TaxInterface stub = (TaxInterface) Naming.lookup("rmi://localhost/TaxService");
+ Scanner sc = new Scanner(System.in);
+ System.out.print("Enter your annual income: Rs. ");
+ double income = sc.nextDouble();
+ double totalTax = stub.calculateTax(income);
+ System.out.println("Calculated Income Tax: Rs. " + totalTax);
+ sc.close();
+ } 
+catch (Exception e) {
+ System.out.println("Client Error: " + e);
+ }
+}
 }
 </pre>
         </div>
+    <div class="code-box">
+    <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+
+<pre id="code2">
+
+SimpeInterest.java
+import java.rmi.Remote; 
+import java.rmi.RemoteException; 
+public interface SimpleInterest extends Remote{ 
+// Method signature to calculate SI: (P * R * T) / 100 
+ double calculate(double principal, double rate, double time) throws RemoteException; 
+}
+SimpInt1.java
+import java.rmi.server.UnicastRemoteObject; 
+import java.rmi.RemoteException; 
+public class SimpInt1 extends UnicastRemoteObject implements SimpleInterest { 
+ public SimpInt1() throws RemoteException{} 
+ public double calculate(double p, double r, double t) throws RemoteException { 
+ return (p * r * t) / 100;
+ }
+}
+InterestServer.java
+import java.rmi.Naming; 
+import java.rmi.registry.LocateRegistry; 
+public class InterestServer { 
+ public static void main(String[] args) { 
+ try { 
+LocateRegistry.createRegistry(1099); 
+SimpInt1 servant = new SimpInt1 (); 
+Naming.rebind("InterestService", servant); 
+System.out.println("Server is ready and waiting for clients..."); 
+ } catch (Exception e) { 
+ System.out.println("Server Error: " + e.getMessage()); 
+ } 
+ } 
+}
+InterestClient.java
+import java.rmi.Naming; 
+import java.util.Scanner; 
+public class InterestClient { 
+ public static void main(String[] args) { 
+ try { 
+// Lookup the remote object 
+SimpleInterest service = (SimpleInterest) Naming.lookup("rmi://localhost/InterestService"); 
+// Accept inputs from command prompt 
+Scanner sc = new Scanner(System.in); 
+System.out.print("Enter Principal: ");
+double p = sc.nextDouble(); 
+System.out.print("Enter Rate of Interest: "); 
+double r = sc.nextDouble(); 
+System.out.print("Enter Time (years): "); 
+double t = sc.nextDouble(); 
+// Invoke remote method 
+double result = service.calculate(p, r, t); 
+System.out.println("\nCalculated Simple Interest: " + result);
+ } catch (Exception e) { 
+ System.out.println("Client Error: " + e.getMessage());
+ } 
+ } 
+}
+
+</pre>
+
+</div>
 
     </div>
 
