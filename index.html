@@ -380,27 +380,27 @@ return result.toString();
     <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
 
 <pre id="code5">
-<html>
- <head>
- <head>
-<title>Voting Eligibility Check</title>
-<style> form {
+&lt;html&gt;
+ &lt;head&gt;
+ &lt;head&gt;
+&lt;title&gt;Voting Eligibility Check&lt;/title&gt;
+&lt;style&gt; form {
 max-width: 300px;
 padding: 20px;
 background-color: lightskyblue; }
-</style>
-</head>
-<body>
-<h2>Check Voting Eligibility</h2>
-<form action=" votingeligibility" method="post">
-<label for="name">Name:</label>
-<input type="text" id="name" name="name" required><br><br>
-<label for="age">Age:</label>
-<input type="number" id="age" name="age" required><br><br>
-<center><input type="submit" value="Check Eligibility"></center>
-</form>
-</body>
-</html>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h2&gt;Check Voting Eligibility&lt;/h2&gt;
+&lt;form action=&quot; votingeligibility&quot; method=&quot;post&quot;&gt;
+&lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;&lt;br&gt;&lt;br&gt;
+&lt;label for=&quot;age&quot;&gt;Age:&lt;/label&gt;
+&lt;input type=&quot;number&quot; id=&quot;age&quot; name=&quot;age&quot; required&gt;&lt;br&gt;&lt;br&gt;
+&lt;center&gt;&lt;input type=&quot;submit&quot; value=&quot;Check Eligibility&quot;&gt;&lt;/center&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 votingeligibility.java:
 import java.io.IOException; 
 import java.io.PrintWriter; 
@@ -446,48 +446,48 @@ out.println("</body></html>");
 
 <pre id="code6">
 
-<%@ page language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
- <title>Fibonacci and Prime Numbers</title>
-</head>
-<body>
- <h2>First 10 Fibonacci Numbers:</h2>
- <% 
+&lt;%@ page language=&quot;java&quot; %&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+ &lt;title&gt;Fibonacci and Prime Numbers&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;h2&gt;First 10 Fibonacci Numbers:&lt;/h2&gt;
+ &lt;% 
  int n = 10;
  int[] fibonacci = new int[n];
  fibonacci[0] = 0;
  fibonacci[1] = 1;
- for (int i = 2; i < n; i++) {
+ for (int i = 2; i &lt; n; i++) {
  fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
  }
  for (int num : fibonacci) {
- out.println(num + "<br>");
+ out.println(num + &quot;&lt;br&gt;&quot;);
  }
- %>
+ %&gt;
  
- <h2>First 10 Prime Numbers:</h2>
- <% 
+ &lt;h2&gt;First 10 Prime Numbers:&lt;/h2&gt;
+ &lt;% 
  int count = 0;
  int num = 2;
- while (count < 10) {
+ while (count &lt; 10) {
  boolean isPrime = true;
- for (int i = 2; i <= Math.sqrt(num); i++) {
+ for (int i = 2; i &lt;= Math.sqrt(num); i++) {
  if (num % i == 0) {
  isPrime = false;
  break;
  }
  }
  if (isPrime) {
- out.println(num + "<br>");
+ out.println(num + &quot;&lt;br&gt;&quot;);
  count++;
  }
  num++;
  }
- %>
-</body>
-</html>
+ %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 
 </pre>
 
@@ -497,17 +497,17 @@ out.println("</body></html>");
 
 <pre id="code7">
 
-<!DOCTYPE html> 
-<html> 
-<head> 
-<title>File Downloader</title> 
-<meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-</head> 
-<body> 
-<a href="FileDownloader?filename=mycv.txt">Download My CV</a> 
-</body> 
-</html>
+&lt;!DOCTYPE html&gt; 
+&lt;html&gt; 
+&lt;head&gt; 
+&lt;title&gt;File Downloader&lt;/title&gt; 
+&lt;meta charset=&quot;UTF-8&quot;&gt; 
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; 
+&lt;/head&gt; 
+&lt;body&gt; 
+&lt;a href=&quot;FileDownloader?filename=mycv.txt&quot;&gt;Download My CV&lt;/a&gt; 
+&lt;/body&gt; 
+&lt;/html&gt;
 FileDownloader.java:
 package com; 
 import java.io.IOException; 
