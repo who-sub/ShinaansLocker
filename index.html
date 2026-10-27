@@ -104,99 +104,42 @@ header{
         <div class="code-box">
             <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
 <pre id="code1">
-PROGRAM 1
-Write a program to convert numbers into words using Enumerations with constructors, 
-methods and instance variables.(INPUT RANGE-0 TO 99999) 
-import java.util.*;
-enum numberword { 
-ZERO(0, "ZERO"), ONE(1, "ONE"), TWO(2, "TWO"), THREE(3, "THREE"), FOUR(4, "FOUR"), 
-FIVE(5, "FIVE"), SIX(6, "SIX"), SEVEN(7, "SEVEN"), EIGHT(8, "EIGHT"), NINE(9, "NINE"), 
-TEN(10, "TEN"), ELEVEN(11, "ELEVEN"), TWELVE(12, "TWELVE"), HIRTEEN(13, 
-"THIRTEEN"), FOURTEEN(14, "FOURTEEN"), FIFTEEN(15, "FIFTEEN"), SIXTEEN(16, 
-"SIXTEEN"), SEVENTEEN(17, "SEVENTEEN"), EIGHTEEN(18, "EIGHTEEN"),
-NINETEEN(19, "NINETEEN"), TWENTY(20, "TWENTY"), THIRTY(30, "THIRTY"), 
-FORTY(40, "FORTY"), FIFTY(50, "FIFTY"), SIXTY(60, "SIXTY"), SEVENTY(70, 
-"SEVENTY"), EIGHTY(80, "EIGHTY"), NINETY(90, "NINETY"); 
- 
-private final int value; 
-private final String word; 
-// Constructor 
-numberword(int value, String word) { 
- this.value = value; 
- this.word = word; 
- } 
-// Method to get word by value 
-public static String getword(int value) { 
- for (numberword nw : numberword.values()) { 
- if (nw.value == value) { 
- return nw.word; 
- } 
- } 
- return ""; 
- } 
-} 
-public class numbertowords 
-{ 
- public static void main(String[] args) { 
- Scanner sc = new Scanner(System.in); 
- System.out.print("Enter a number (0-99999): "); 
- int num = sc.nextInt(); 
- if (num < 0 || num > 99999) { 
- System.out.println("Out of range!"); 
- } else if (num == 0) { 
- System.out.println(numberword.ZERO.getword(0)); 
- } else { 
- System.out.println(converttowords(num).trim()); 
- } 
- }
- public static String converttowords(int n) { 
- if (n >= 1000) { 
-return converttowords(n / 1000) + " THOUSAND " +" "+converttowords(n % 1000);
- } else if (n >= 100) { 
- return converttowords(n / 100) + " HUNDRED " +"AND "+ converttowords(n % 100); 
- } else if (n >= 20) { 
- return numberword.getword((n / 10) * 10) + " " + converttowords(n % 10); 
- } else if (n > 0) { 
- return numberword.getword(n); 
- } 
-return ""; 
- } 
-}    
+n = int(input("Enter the number of elements: "))
+arr = []
+for i in range(n):
+ num = int(input("Enter the element: "))
+ arr.append(num)
+for i in range(n):
+ min_index = i
+ for j in range(i + 1, n):
+ if arr[j] < arr[min_index]:
+ min_index = j
+ arr[i], arr[min_index] = arr[min_index], arr[i]
+print("The Selection Sorted List is:")
+print(arr)
 </pre>
         </div>
 <div class="code-box">
     <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
 
 <pre id="code2">
-import java.util.*; 
-public class ListSecondMaxMin 
-{ 
- public static void main(String[] args) 
- { 
-Scanner sc = new Scanner(System.in); 
- System.out.print("Enter number of elements (n): "); 
-int n = sc.nextInt(); 
-Integer[] numbers = new Integer[n]; 
-System.out.println("Enter " + n + " elements:"); 
- for (int i = 0; i < n; i++) { 
-int input = sc.nextInt(); 
-numbers[i]=input; 
-}
-List&lt;Integer&gt; distinctlist = Arrays.asList(numbers); 
- Collections.sort(distinctlist); 
- System.out.println("Sorted Unique List: " + distinctlist); 
- if (distinctlist.size() >= 2) { 
- int secondMin = distinctlist.get(1); 
- int secondMax = distinctlist.get(distinctlist.size() - 2); 
- System.out.println("Second minimum: " + secondMin); 
- System.out.println("Second maximum: " + secondMax); 
- } else { 
- System.out.println("Not enough unique elements to find second max/min."); 
- } 
- } 
-}
+def insertion_sort(arr):
+ for i in range(1, len(arr)):
+ key = arr[i]
+ j = i - 1
+ while j >= 0 and key < arr[j]:
+ arr[j + 1] = arr[j]
+ j -= 1
 
-
+ arr[j + 1] = key
+n = int(input("Enter number of elements: "))
+arr = []
+for i in range(n):
+ num = int(input("Enter the elements: "))
+ arr.append(num)
+print("Array before sorting:", arr)
+insertion_sort(arr)
+print("Array after sorting:", arr)
 </pre>
 
 </div>
@@ -205,123 +148,26 @@ List&lt;Integer&gt; distinctlist = Arrays.asList(numbers);
 
 <pre id="code3">
 
-import java.util.*; 
-public class ArrayListOperations { 
-public static void main(String[] args) { 
- Scanner sc = new Scanner(System.in); 
- ArrayList&lt;String&gt; list = new ArrayList<>(); 
- int choice; 
- while (true) { 
- System.out.println("\n=== ArrayList Operations Menu ==="); 
- System.out.println("1. Add elements"); 
- System.out.println("2. Sort elements"); 
- System.out.println("3. Replace an element"); 
- System.out.println("4. Remove an element"); 
- System.out.println("5. Display all elements"); 
- System.out.println("6. Add element between two elements"); 
- System.out.println("0. Exit"); 
- System.out.print("Enter choice: "); 
- 
- choice = sc.nextInt(); 
- sc.nextLine(); // consume newline 
- switch (choice) { 
- case 1: // Add elements 
- System.out.print("Enter element to add: "); 
- String element = sc.nextLine(); 
- list.add(element); 
- System.out.println("Element '" + element + "' added!"); 
- break; 
- case 2: // Sort elements 
- if (!list.isEmpty()) { 
- Collections.sort(list); 
- System.out.println("Elements sorted!"); 
- } else { 
- System.out.println("List is empty!"); 
- } 
- break; 
- 
-case 3: // Replace element 
- if (!list.isEmpty()) { 
- System.out.print("Enter index to replace: "); 
- int index = sc.nextInt(); 
- sc.nextLine()
-if (index >= 0 && index < list.size()) { 
- System.out.print("Enter new element: "); 
- String newElement = sc.nextLine(); 
- list.set(index, newElement); 
- System.out.println("Element at index " + index + " replaced!"); 
- } else { 
- System.out.println("Invalid index!"); 
- } 
- } else { 
- System.out.println("List is empty!"); 
- } 
- break; 
-case 4: // Remove element 
- if (!list.isEmpty()) { 
- System.out.println("Choose removal method:"); 
- System.out.println("1. Remove by index"); 
- System.out.println("2. Remove by value"); 
- int removeChoice = sc.nextInt(); 
- sc.nextLine(); 
- if (removeChoice == 1) { 
- System.out.print("Enter index: "); 
- int index = sc.nextInt(); 
- if (index >= 0 && index < list.size()) { 
- list.remove(index); 
- System.out.println("Element removed!"); 
- } else { 
- System.out.println("Invalid index!"); 
- }
- } else if (removeChoice == 2) { 
- System.out.print("Enter element to remove: "); 
- String value = sc.nextLine(); 
- if (list.remove(value)) { 
- System.out.println("Element '" + value + "' removed!"); 
- } else { 
- System.out.println("Element not found!"); 
- } 
- } 
- } else { 
- System.out.println("List is empty!"); 
- } 
- break; 
- case 5: // Display all elements 
- System.out.println("ArrayList elements: " + list); 
- break; 
- case 6: // Add between two elements 
- if (list.size() >= 2) { 
- System.out.println("Current list: " + list); 
- System.out.print("Enter first element: "); 
- String first = sc.nextLine(); 
- System.out.print("Enter second element: "); 
- String second = sc.nextLine();
- System.out.print("Enter element to insert: "); 
- String insertElement = sc.nextLine(); 
- 
- int firstIndex = list.indexOf(first); 
- int secondIndex = list.indexOf(second); 
- 
- if (firstIndex != -1 && secondIndex != -1 && firstIndex < secondIndex) { 
- list.add(firstIndex + 1, insertElement); 
- System.out.println("Element inserted between '" + first + "' and '" + second + "'!"); 
- } else { 
- System.out.println("Elements not found or invalid order!"); 
- } 
- } else { 
- System.out.println("Need at least 2 elements to insert between!"); 
- } 
- break; 
- case 0: System.out.println("Exiting..."); 
- sc.close(); 
- return; 
- default: 
- System.out.println("Invalid choice!"); 
- } 
- } 
- } 
-}
-
+def find_min_max(arr, low, high):
+ if low == high:
+ return arr[low], arr[low]
+ if high == low + 1:
+ if arr[low] < arr[high]:
+ return arr[low], arr[high]
+ else:
+ return arr[high], arr[low]
+ mid = (low + high) // 2
+ min1, max1 = find_min_max(arr, low, mid)
+ min2, max2 = find_min_max(arr, mid + 1, high)
+ return min(min1, min2), max(max1, max2)
+n = int(input("Enter number of elements: "))
+arr=[]
+for i in range(n):
+ num = int(input("Enter the elements: "))
+ arr.append(num)
+minimum, maximum = find_min_max(arr, 0, n - 1)
+print("Minimum element =", minimum)
+print("Maximum element =", maximum)
 </pre>
 
 </div>
@@ -330,49 +176,29 @@ case 4: // Remove element
 
 <pre id="code4">
 
-package parta4; 
-import java.util.Scanner; 
-public class PartA4 { 
-public static void main(String[] args) { 
-Scanner scanner=new Scanner(System.in); 
-System.out.println("Enter a string:"); 
-String input=scanner.nextLine(); 
-String swappedString=swapPairsInEventWords(input); 
-System.out.println("Swapped string:"+swappedString); 
-String toggledString=toggleCharacters(input); 
-System.out.println("Toggled string:"+toggledString); 
-scanner.close(); 
- } 
-public static String swapPairsInEventWords(String input) { 
-StringBuilder result=new StringBuilder(); 
-String[] words=input.split("\\s+"); 
-for(String word: words){ 
-if(word.length()%2==0){ 
-StringBuilder swappedWord=new StringBuilder(); 
-for(int i=0;i&lt;word.length()-1;i+=2){ 
-swappedWord.append(word.charAt(i+1)).append(word.charAt(i)); 
+from collections import deque
+queue=deque()
+def bfs(visited, graph,node):
+ visited.add(node)
+ queue.appendleft(node)
+ while queue:
+ node =queue.pop()
+ print(node,end = "\t")
+ for neigbour in graph[node]:
+ if neigbour not in visited:
+ visited.add(neigbour)
+ queue.appendleft(neigbour)
+graph = {
+'A': ['B', 'C'],
+'B': ['A', 'D', 'E'],
+'C': ['A', 'F'],
+'D': [],
+'E': ['B', 'F'],
+'F': ['C', 'E']
 }
-word=swappedWord.toString(); 
-result.append(word).append(" ");
- } 
- }
-return result.toString().trim();
-} 
- public static String toggleCharacters(String input) { 
-StringBuilder result=new StringBuilder(); 
-for(char ch: input.toCharArray()){ 
-if(Character.isLowerCase(ch)){ 
-result.append(Character.toUpperCase(ch)); 
-}else if(Character.isUpperCase(ch)){ 
-result.append(Character.toLowerCase(ch));
-}else{ 
-result.append(ch); 
-} 
-} 
-return result.toString(); 
-} 
-}
-
+visited=set()
+print("Following is the Breadth First Traversal")
+bfs(visited, graph, 'A')
 </pre>
 
 </div>
@@ -380,63 +206,24 @@ return result.toString();
     <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
 
 <pre id="code5">
-&lt;html&gt;
- &lt;head&gt;
- &lt;head&gt;
-&lt;title&gt;Voting Eligibility Check&lt;/title&gt;
-&lt;style&gt; form {
-max-width: 300px;
-padding: 20px;
-background-color: lightskyblue; }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h2&gt;Check Voting Eligibility&lt;/h2&gt;
-&lt;form action=&quot; votingeligibility&quot; method=&quot;post&quot;&gt;
-&lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
-&lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;&lt;br&gt;&lt;br&gt;
-&lt;label for=&quot;age&quot;&gt;Age:&lt;/label&gt;
-&lt;input type=&quot;number&quot; id=&quot;age&quot; name=&quot;age&quot; required&gt;&lt;br&gt;&lt;br&gt;
-&lt;center&gt;&lt;input type=&quot;submit&quot; value=&quot;Check Eligibility&quot;&gt;&lt;/center&gt;
-&lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-votingeligibility.java:
-import java.io.IOException; 
-import java.io.PrintWriter; 
-import jakarta.servlet.ServletException; 
-import jakarta.servlet.annotation.WebServlet; 
-import jakarta.servlet.http.HttpServlet; 
-import jakarta.servlet.http.HttpServletRequest; 
-import jakarta.servlet.http.HttpServletResponse; 
-@WebServlet("/votingeligibility") 
-public class votingeligibility extends HttpServlet { 
-protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-throws ServletException, IOException { 
-PrintWriter out = response.getWriter(); 
-try { 
-String name = request.getParameter("name"); 
-String ag1 = request.getParameter("age"); 
-out.println("<html><title>Voting Eligibility Result</title>"); 
-out.println("<body>"); 
-out.println("<h2>Voting Eligibility Result</h2>"); 
-int age = Integer.parseInt(ag1); 
-if (age >= 18) { 
-//out.println("&lt;h3 style='color: green;'&gt;"); 
-out.println("&lt;h3 style='color: green;'&gt;"); 
-out.println(name + ", you are ELIGIBLE to vote!");
-out.println("&lt;/h3&gt;"); 
- } else { 
- out.println("&lt;h3 style='color: red;'&gt;"); 
- out.println(name + ", you are NOT eligible to vote yet. Minimum age required is 18."); 
- out.println("&lt;/h3&gt;"); 
- } 
-out.println("&lt;/body&gt;&lt;/html&gt;");
- } catch (NumberFormatException e) { 
- out.println("invalid age entered. Please enter a valid number."); 
- } 
-} 
+
+graph = {
+'A': ['B', 'C'],
+'B': ['A', 'D', 'E'],
+'C': ['A', 'F'],
+'D': [],
+'E': ['B', 'F'],
+'F': ['C', 'E']
 }
+visited = set()
+def dfs(visited,graph,node):
+ if node not in visited:
+ print(node,end='\t')
+ visited.add(node)
+ for neighbour in graph[node]:
+ dfs(visited,graph,neighbour)
+print("Following is the Depth first search traversal")
+dfs(visited, graph, 'A')
 
 </pre>
 
@@ -446,48 +233,32 @@ out.println("&lt;/body&gt;&lt;/html&gt;");
 
 <pre id="code6">
 
-&lt;%@ page language=&quot;java&quot; %&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
- &lt;title&gt;Fibonacci and Prime Numbers&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
- &lt;h2&gt;First 10 Fibonacci Numbers:&lt;/h2&gt;
- &lt;% 
- int n = 10;
- int[] fibonacci = new int[n];
- fibonacci[0] = 0;
- fibonacci[1] = 1;
- for (int i = 2; i &lt; n; i++) {
- fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
- }
- for (int num : fibonacci) {
- out.println(num + &quot;&lt;br&gt;&quot;);
- }
- %&gt;
- 
- &lt;h2&gt;First 10 Prime Numbers:&lt;/h2&gt;
- &lt;% 
- int count = 0;
- int num = 2;
- while (count &lt; 10) {
- boolean isPrime = true;
- for (int i = 2; i &lt;= Math.sqrt(num); i++) {
- if (num % i == 0) {
- isPrime = false;
- break;
- }
- }
- if (isPrime) {
- out.println(num + &quot;&lt;br&gt;&quot;);
- count++;
- }
- num++;
- }
- %&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+x = [[8, 5],
+ [1, 7]]
+y = [[3, 4],
+ [2, 9]]
+z = [[0, 0],
+ [0, 0]]
+print("The First Matrix is: ")
+for i in x:
+ print(i)
+print("The Second Matrix is: ")
+for i in y:
+ print(i)
+m1= (x[0][0] + x[1][1]) * (y[0][0] + y[1][1])
+m2 = (x[1][0] + x[1][1]) * y[0][0]
+m3 = x[0][0] * (y[0][1] - y[1][1])
+m4 = x[1][1] * (y[1][0] - y[0][0])
+m5 = (x[0][0] + x[0][1]) * y[1][1]
+m6 = (x[1][0] - x[0][0]) * (y[0][0]+y[0][1])
+m7 = (x[0][1] - x[1][1]) * (y[1][0]+y[1][1])
+z[0][0] = m1 + m4- m5 + m7
+z[0][1] = m3 + m5
+z[1][0] = m2 + m4
+z[1][1] = m1 - m2 + m3 + m6
+print("The Product of Two Matrix is: ")
+for i in z:
+ print(i)
 
 </pre>
 
@@ -497,42 +268,31 @@ out.println("&lt;/body&gt;&lt;/html&gt;");
 
 <pre id="code7">
 
-&lt;!DOCTYPE html&gt; 
-&lt;html&gt; 
-&lt;head&gt; 
-&lt;title&gt;File Downloader&lt;/title&gt; 
-&lt;meta charset=&quot;UTF-8&quot;&gt; 
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; 
-&lt;/head&gt; 
-&lt;body&gt; 
-&lt;a href=&quot;FileDownloader?filename=mycv.txt&quot;&gt;Download My CV&lt;/a&gt; 
-&lt;/body&gt; 
-&lt;/html&gt;
-FileDownloader.java:
-package com; 
-import java.io.IOException; 
-import java.io.FileInputStream; 
-import java.io.OutputStream; 
-import javax.servlet.ServletException; 
-import javax.servlet.http.HttpServlet; 
-import javax.servlet.http.HttpServletRequest; 
-import javax.servlet.http.HttpServletResponse; 
-public class FileDownloader extends HttpServlet { 
-protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-throws ServletException, IOException { 
-String fname=request.getParameter("filename");
-response.setContentType("text/plaintext"); 
-response.setHeader("Content-Disposition", "attachment;filename=\""+fname+" \""); 
-OutputStream os=response.getOutputStream(); 
-FileInputStream fis=new FileInputStream("C:\\3bca\\mycv.txt"); 
-int i=0; 
-while((i=fis.read())!=-1){ 
-os.write(i); 
-} 
-fis.close(); 
-os.close(); 
-} 
-}
+def subset_sum(arr, target, index, current_subset, current_sum):
+ global found
+
+ if current_sum == target:
+ print(current_subset)
+ found = True
+ return
+
+ if index == len(arr) or current_sum > target:
+ return
+
+ subset_sum(arr, target, index + 1,
+ current_subset + [arr[index]],
+ current_sum + arr[index])
+
+ subset_sum(arr, target, index + 1,
+ current_subset,
+ current_sum)
+S = set(map(int, input("Enter the elements (separated by spaces):").split()))
+d = int(input("Enter the target sum: "))
+found = False
+print("Subsets with sum", d, "are:")
+subset_sum(list(S), d, 0, [], 0)
+if not found:
+ print("No subset exists with the given sum.")
 
 </pre>
 
@@ -546,73 +306,50 @@ os.close();
         <div class="code-box">
             <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
 <pre id="code1">
-TaxInterface.java 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-public interface TaxInterface extends Remote {
-double calculateTax(double income) throws RemoteException;
-}
-Tax.java
-import java.rmi.server.UnicastRemoteObject;
-import java.rmi.RemoteException;
-public class Tax extends UnicastRemoteObject implements TaxInterface {
- public Tax() throws RemoteException {
- super();
-}
-public double calculateTax(double income) throws RemoteException {
-double tax = 0;
-if (income <= 300000) {
- tax = 0;
-} else if (income <= 600000) {
- tax = (income - 300000) * 0.05;
-} else if (income <= 900000) {
- tax = (300000 * 0.05) + (income - 600000) * 0.10;
-} else if (income <= 1200000) {
- tax = (300000 * 0.05) + (300000 * 0.10) + (income - 900000) * 0.15;
-} else if (income <= 1500000) {
- tax = (300000 * 0.05) + (300000 * 0.10) + (300000 * 0.15) + (income - 1200000) * 0.20;
-} else {
-tax = (300000 * 0.05) + (300000 * 0.10) + (300000 * 0.15)+ (300000 * 0.20) + (income - 1500000) 
-*0.30;
-}
- return tax;
-}
-}
-TaxServer.java
-import java.rmi.Naming;
-import java.rmi.registry.LocateRegistry;
-public class TaxServer {
-public static void main(String[] args) {
-try {
- LocateRegistry.createRegistry(1099);
- Tax taxServant = new Tax();
- Naming.rebind("TaxService", taxServant);
- System.out.println("Tax Server is ready.");
-} 
-catch (Exception e) {
- System.out.println("Server Error: " + e);
- }
- }
-}
-TaxClient.java
-import java.rmi.Naming;
-import java.util.Scanner;
-public class TaxClient {
-public static void main(String[] args) {
-try {
- TaxInterface stub = (TaxInterface) Naming.lookup("rmi://localhost/TaxService");
- Scanner sc = new Scanner(System.in);
- System.out.print("Enter your annual income: Rs. ");
- double income = sc.nextDouble();
- double totalTax = stub.calculateTax(income);
- System.out.println("Calculated Income Tax: Rs. " + totalTax);
- sc.close();
- } 
-catch (Exception e) {
- System.out.println("Client Error: " + e);
- }
-}
-}
+import random
+import time
+def merge_sort(arr):
+ #if the array has 1 or 0 elements, it is already sorted
+ if len(arr) <= 1:
+ return arr
+ # Find the middle point and divide the array into two halves
+ mid = len(arr) // 2
+ left_half = merge_sort(arr[:mid])
+ right_half = merge_sort(arr[mid:])
+ # Merge the sorted halves
+ return merge(left_half, right_half)
+def merge(left, right):
+ sorted_array = []
+ i = j = 0
+ # Compare elements from both halves and add the smaller one to the result
+ while i < len(left) and j < len(right):
+ if left[i] < right[j]:
+ sorted_array.append(left[i])
+ i += 1
+ else:
+ sorted_array.append(right[j])
+ j += 1
+ # Append any remaining elements (if one half is longer than the other)
+ sorted_array.extend(left[i:])
+ sorted_array.extend(right[j:])
+ return sorted_array
+#n = int(input("Enter the number of elements: "))
+arr = []
+for i in range(5005):
+ n=random.randrange(5000)
+ arr.append(n)
+print('The Array Element Before sorting:')
+print(arr)
+start=time.time()
+print("\nBefore Sorting Time :",start)
+msort=merge_sort(arr)
+end=time.time()
+print('\nThe Array Element after sorting:')
+print(msort)
+print("\nAfter Sorting Time :",end)
+dif=end-start
+print("\nTime Taken :",dif)
+     
 </pre>
         </div>
     <div class="code-box">
@@ -620,65 +357,76 @@ catch (Exception e) {
 
 <pre id="code2">
 
-SimpeInterest.java
-import java.rmi.Remote; 
-import java.rmi.RemoteException; 
-public interface SimpleInterest extends Remote{ 
-// Method signature to calculate SI: (P * R * T) / 100 
- double calculate(double principal, double rate, double time) throws RemoteException; 
-}
-SimpInt1.java
-import java.rmi.server.UnicastRemoteObject; 
-import java.rmi.RemoteException; 
-public class SimpInt1 extends UnicastRemoteObject implements SimpleInterest { 
- public SimpInt1() throws RemoteException{} 
- public double calculate(double p, double r, double t) throws RemoteException { 
- return (p * r * t) / 100;
- }
-}
-InterestServer.java
-import java.rmi.Naming; 
-import java.rmi.registry.LocateRegistry; 
-public class InterestServer { 
- public static void main(String[] args) { 
- try { 
-LocateRegistry.createRegistry(1099); 
-SimpInt1 servant = new SimpInt1 (); 
-Naming.rebind("InterestService", servant); 
-System.out.println("Server is ready and waiting for clients..."); 
- } catch (Exception e) { 
- System.out.println("Server Error: " + e.getMessage()); 
- } 
- } 
-}
-InterestClient.java
-import java.rmi.Naming; 
-import java.util.Scanner; 
-public class InterestClient { 
- public static void main(String[] args) { 
- try { 
-// Lookup the remote object 
-SimpleInterest service = (SimpleInterest) Naming.lookup("rmi://localhost/InterestService"); 
-// Accept inputs from command prompt 
-Scanner sc = new Scanner(System.in); 
-System.out.print("Enter Principal: ");
-double p = sc.nextDouble(); 
-System.out.print("Enter Rate of Interest: "); 
-double r = sc.nextDouble(); 
-System.out.print("Enter Time (years): "); 
-double t = sc.nextDouble(); 
-// Invoke remote method 
-double result = service.calculate(p, r, t); 
-System.out.println("\nCalculated Simple Interest: " + result);
- } catch (Exception e) { 
- System.out.println("Client Error: " + e.getMessage());
- } 
- } 
-}
+def knapsack(n, capacity, weights, prices):
+ # Base condition
+ if n == 0 or capacity == 0:
+ return 0
+ # If the weight of current item is greater than capacity,
+ # we cannot include it
+ if weights[n - 1] > capacity:
+ return knapsack(n - 1, capacity, weights, prices)
+ else:
+ # Option 1: Include the current item
+ include = prices[n - 1] + knapsack(
+ n - 1,
+ capacity - weights[n - 1],
+ weights,
+ prices
+ )
+ # Option 2: Do not include the current item
+ exclude = knapsack(
+ n - 1,
+ capacity,
+ weights,
+ prices
+ )
+ # Choose the option with maximum profit
+ return max(include, exclude)
+weights = [7, 3, 4, 5]
+prices = [42, 12, 40, 25]
+n = 4
+capacity = 10
+print("Knapsack Problem Solution")
+print("Weights =", weights)
+print("Prices =", prices)
+print("Capacity =", capacity)
+print("Optimal Solution =", knapsack(n, capacity, weights, prices))
 
 </pre>
 
 </div>
+     <div class="code-box">
+    <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+
+<pre id="code3">
+import itertools
+def totaldistance(route, distance_matrix):
+ distance = 0
+ for i in range(len(route) - 1):
+ distance += distance_matrix[route[i]][route[i + 1]]
+ distance += distance_matrix[route[-1]][route[0]]
+ return distance
+def tsp(distance_matrix):
+ n = len(distance_matrix)
+ vertices = list(range(n))
+ min_distance = float('inf')
+ optimal_route = []
+ for permutation in itertools.permutations(vertices[1:]):
+ route = [0] + list(permutation)
+ current_distance = totaldistance(route, distance_matrix)
+ if current_distance < min_distance:
+ min_distance = current_distance
+ optimal_route = route
+ return optimal_route, min_distance
+distance_matrix = [
+ [0, 10, 15, 20],
+ [10, 0, 35, 25],
+ [15, 35, 0, 30],
+ [20, 25, 30, 0]
+]
+route, distance = tsp(distance_matrix)
+print("Optimal route:", route + [route[0]])
+print("Minimum distance:", distance)
 
     </div>
 
