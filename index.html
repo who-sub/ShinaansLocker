@@ -104,42 +104,67 @@ header{
         <div class="code-box">
             <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
 <pre id="code1">
-n = int(input("Enter the number of elements: "))
-arr = []
-for i in range(n):
- num = int(input("Enter the element: "))
- arr.append(num)
-for i in range(n):
- min_index = i
- for j in range(i + 1, n):
- if arr[j] < arr[min_index]:
- min_index = j
- arr[i], arr[min_index] = arr[min_index], arr[i]
-print("The Selection Sorted List is:")
-print(arr)
+A <- matrix(1:9, nrow = 3)
+cat("\n Matrix A\n")
+print(A)
+B <- matrix(10:18, nrow = 3, byrow = TRUE)
+cat("\n Matrix B\n")
+print(B)
+r1 <- t(A) %*% B
+cat("\n A^T.B \n")
+print(r1)
+r2 <- t(B) %*% (A %*% t(A))
+cat("\n B^T.(A.A^T)\n")
+print(r2)
+r3 <- (A %*% t(A)) %*% t(B)
+cat("\n (A.A^T).B^T \n")
+print(r3)
+I3 <- diag(3)
+d <- (B %*% t(B)) + (A %*% t(A)) - 100 * I3
+r4 <- solve(d)
+cat("\n [(B.B^T)+(A.A^T)-100I3]^-1 \n")
+print(r4
 </pre>
         </div>
 <div class="code-box">
     <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
 
 <pre id="code2">
-def insertion_sort(arr):
- for i in range(1, len(arr)):
- key = arr[i]
- j = i - 1
- while j >= 0 and key < arr[j]:
- arr[j + 1] = arr[j]
- j -= 1
-
- arr[j + 1] = key
-n = int(input("Enter number of elements: "))
-arr = []
-for i in range(n):
- num = int(input("Enter the elements: "))
- arr.append(num)
-print("Array before sorting:", arr)
-insertion_sort(arr)
-print("Array after sorting:", arr)
+quadratic_roots <- function(a, b, c)
+{
+ discriminant <- b^2 - 4*a*c
+ if(a == 0)
+ {
+ cat("Not a quadratic equation")
+ }
+ else if(discriminant > 0)
+ {
+ root1 <- (-b + sqrt(discriminant))/(2*a)
+ root2 <- (-b - sqrt(discriminant))/(2*a)
+ cat("Roots are Real and Distinct\n")
+ cat("Root1 =", root1, "\n")
+ cat("Root2 =", root2)
+ }
+ else if(discriminant == 0)
+ {
+ root <- -b/(2*a)
+ cat("Roots are Real and Equal\n")
+ cat("Root =", root)
+ }
+ else
+ {
+ realPart <- -b/(2*a)
+ imaginaryPart <- sqrt(-discriminant)/(2*a)
+ cat("Roots are Complex\n")
+ cat("Root1 =", realPart, "+", imaginaryPart, "i\n")
+ cat("Root2 =", realPart, "-", imaginaryPart, "i")
+ }
+}
+a <- as.numeric(readline("Enter coefficient a: "))
+b <- as.numeric(readline("Enter coefficient b: "))
+c <- as.numeric(readline("Enter coefficient c: "))
+quadratic_roots(a, b, c)
+    
 </pre>
 
 </div>
@@ -148,26 +173,35 @@ print("Array after sorting:", arr)
 
 <pre id="code3">
 
-def find_min_max(arr, low, high):
- if low == high:
- return arr[low], arr[low]
- if high == low + 1:
- if arr[low] < arr[high]:
- return arr[low], arr[high]
- else:
- return arr[high], arr[low]
- mid = (low + high) // 2
- min1, max1 = find_min_max(arr, low, mid)
- min2, max2 = find_min_max(arr, mid + 1, high)
- return min(min1, min2), max(max1, max2)
-n = int(input("Enter number of elements: "))
-arr=[]
-for i in range(n):
- num = int(input("Enter the elements: "))
- arr.append(num)
-minimum, maximum = find_min_max(arr, 0, n - 1)
-print("Minimum element =", minimum)
-print("Maximum element =", maximum)
+start <- as.integer(readline("Enter the Starting Number: "))
+end <- as.integer(readline("Enter the Ending Number: "))
+prime <- c()
+for(i in start:end)
+{
+ isPrime <- TRUE
+ if(i < 2)
+ {
+ isPrime <- FALSE
+ }
+ else if(i > 2)
+ {
+ for(j in 2:(i-1))
+ {
+ if(i %% j == 0)
+ {
+ isPrime <- FALSE
+ break
+ }
+ }
+ }
+ if(isPrime)
+ {
+ prime <- c(prime, i)
+ }
+}
+cat("\nPrime Numbers are:\n")
+print(prime)
+     
 </pre>
 
 </div>
@@ -176,29 +210,25 @@ print("Maximum element =", maximum)
 
 <pre id="code4">
 
-from collections import deque
-queue=deque()
-def bfs(visited, graph,node):
- visited.add(node)
- queue.appendleft(node)
- while queue:
- node =queue.pop()
- print(node,end = "\t")
- for neigbour in graph[node]:
- if neigbour not in visited:
- visited.add(neigbour)
- queue.appendleft(neigbour)
-graph = {
-'A': ['B', 'C'],
-'B': ['A', 'D', 'E'],
-'C': ['A', 'F'],
-'D': [],
-'E': ['B', 'F'],
-'F': ['C', 'E']
-}
-visited=set()
-print("Following is the Breadth First Traversal")
-bfs(visited, graph, 'A')
+my_list <- list("Hello", 42, c(1, 2, 3, 4), TRUE)
+cat(" a) First element:\n")
+print(my_list[[1]])
+names(my_list) <- c("string", "number", "vector", "logical")
+cat("\n b) List with names:\n")
+print(my_list)
+my_list <- append(my_list, list(new_element = "Inserted"), after = 1)
+cat("\n c) After inserting at position 2:\n")
+print(my_list)
+my_list[2] <- NULL
+cat("\n d) After removing 2nd element:\n")
+print(my_list)
+cat("\n e) First and third elements:\n")
+print(my_list[[1]])
+print(my_list[[3]])
+my_list[[3]] <- "Updated Value"
+cat("\n f) After updating 3rd element:\n")
+print(my_list)
+    
 </pre>
 
 </div>
@@ -207,23 +237,24 @@ bfs(visited, graph, 'A')
 
 <pre id="code5">
 
-graph = {
-'A': ['B', 'C'],
-'B': ['A', 'D', 'E'],
-'C': ['A', 'F'],
-'D': [],
-'E': ['B', 'F'],
-'F': ['C', 'E']
-}
-visited = set()
-def dfs(visited,graph,node):
- if node not in visited:
- print(node,end='\t')
- visited.add(node)
- for neighbour in graph[node]:
- dfs(visited,graph,neighbour)
-print("Following is the Depth first search traversal")
-dfs(visited, graph, 'A')
+item <- data.frame(
+ ItemCode = c(1001, 1002, 1003, 1004, 1005),
+ ItemCategory = c("Electronics", "Desktop Supplies",
+ "Office Supplies", "USB", "CD Drive"),
+ ItemPrice = c(700, 300, 350, 400, 800)
+)
+print(item)
+item[item$ItemPrice >= 350, ]
+item[item$ItemCategory == "Office Supplies" |
+ item$ItemCategory == "Desktop Supplies", ]
+item[item$ItemPrice >= 300 & item$ItemPrice <= 700, ]
+sum(item$ItemPrice)
+item_details <- data.frame(
+ ItemCode = c(1001, 1002, 1003, 1004, 1005),
+ItemQtyOnHand = c(20, 35, 15, 40, 25),
+ ItemReorderLvl = c(5, 10, 8, 12, 6)
+)
+merge(item, item_details, by = "ItemCode")
 
 </pre>
 
@@ -233,33 +264,21 @@ dfs(visited, graph, 'A')
 
 <pre id="code6">
 
-x = [[8, 5],
- [1, 7]]
-y = [[3, 4],
- [2, 9]]
-z = [[0, 0],
- [0, 0]]
-print("The First Matrix is: ")
-for i in x:
- print(i)
-print("The Second Matrix is: ")
-for i in y:
- print(i)
-m1= (x[0][0] + x[1][1]) * (y[0][0] + y[1][1])
-m2 = (x[1][0] + x[1][1]) * y[0][0]
-m3 = x[0][0] * (y[0][1] - y[1][1])
-m4 = x[1][1] * (y[1][0] - y[0][0])
-m5 = (x[0][0] + x[0][1]) * y[1][1]
-m6 = (x[1][0] - x[0][0]) * (y[0][0]+y[0][1])
-m7 = (x[0][1] - x[1][1]) * (y[1][0]+y[1][1])
-z[0][0] = m1 + m4- m5 + m7
-z[0][1] = m3 + m5
-z[1][0] = m2 + m4
-z[1][1] = m1 - m2 + m3 + m6
-print("The Product of Two Matrix is: ")
-for i in z:
- print(i)
-
+marital_status <- factor(c("Married", "single", "divorced", "Married"), levels = c("Married", "sing
+le", "divorced"))
+print(marital_status)
+is.factor(marital_status)
+marital_status[c(2, 4)]
+marital_status <- marital_status[-3]
+print(marital_status)
+marital_status[2] <- "Married"
+print(marital_status)
+levels(marital_status) <- c(levels(marital_status), "widowed")
+print(levels(marital_status))
+marital_status[2] <- "widowed"
+print(marital_status)
+marital_status
+    
 </pre>
 
 </div>
@@ -268,31 +287,7 @@ for i in z:
 
 <pre id="code7">
 
-def subset_sum(arr, target, index, current_subset, current_sum):
- global found
-
- if current_sum == target:
- print(current_subset)
- found = True
- return
-
- if index == len(arr) or current_sum > target:
- return
-
- subset_sum(arr, target, index + 1,
- current_subset + [arr[index]],
- current_sum + arr[index])
-
- subset_sum(arr, target, index + 1,
- current_subset,
- current_sum)
-S = set(map(int, input("Enter the elements (separated by spaces):").split()))
-d = int(input("Enter the target sum: "))
-found = False
-print("Subsets with sum", d, "are:")
-subset_sum(list(S), d, 0, [], 0)
-if not found:
- print("No subset exists with the given sum.")
+nada
 
 </pre>
 
@@ -306,49 +301,38 @@ if not found:
         <div class="code-box">
             <button class="copy-btn" onclick="copyCode('code11')">Copy</button>
 <pre id="code11">
-import random
-import time
-def merge_sort(arr):
- #if the array has 1 or 0 elements, it is already sorted
- if len(arr) <= 1:
- return arr
- # Find the middle point and divide the array into two halves
- mid = len(arr) // 2
- left_half = merge_sort(arr[:mid])
- right_half = merge_sort(arr[mid:])
- # Merge the sorted halves
- return merge(left_half, right_half)
-def merge(left, right):
- sorted_array = []
- i = j = 0
- # Compare elements from both halves and add the smaller one to the result
- while i < len(left) and j < len(right):
- if left[i] < right[j]:
- sorted_array.append(left[i])
- i += 1
- else:
- sorted_array.append(right[j])
- j += 1
- # Append any remaining elements (if one half is longer than the other)
- sorted_array.extend(left[i:])
- sorted_array.extend(right[j:])
- return sorted_array
-#n = int(input("Enter the number of elements: "))
-arr = []
-for i in range(5005):
- n=random.randrange(5000)
- arr.append(n)
-print('The Array Element Before sorting:')
-print(arr)
-start=time.time()
-print("\nBefore Sorting Time :",start)
-msort=merge_sort(arr)
-end=time.time()
-print('\nThe Array Element after sorting:')
-print(msort)
-print("\nAfter Sorting Time :",end)
-dif=end-start
-print("\nTime Taken :",dif)
+data_vector <- c(4, 3, 0, 5, 2, 9, 4, 5)
+cat("THE DATA VECTOR IS\n")
+print(data_vector)
+mean_value <- mean(data_vector)
+median_value <- median(data_vector)
+frequency <- table(data_vector)
+mode_value <- names(frequency)[frequency == max(frequency)]
+cat("a. The Mean value is:", mean_value, "\n")
+cat("The Median value is:", median_value, "\n")
+cat("The Mode value is:", mode_value, "\n")
+range_value <- max(data_vector) - min(data_vector)
+cat("b. The Range value is:", range_value, "\n")
+x <- sort(data_vector)
+n <- length(x)
+p35 <- x[floor(n * 35 / 100) + 1]
+p78 <- x[floor(n * 78 / 100) + 1]
+cat("c. The 35th Percentile:", p35, "\n")
+cat("The 78th Percentile:", p78, "\n")
+variance_value <- var(data_vector)
+std_deviation_value <- sd(data_vector)
+cat("d. The Variance is:", variance_value, "\n")
+cat("The Standard Deviation is:", std_deviation_value, "\n")
+Q1 <- median(x[1:4])
+Q3 <- median(x[5:8])
+interquartile_range <- Q3 - Q1
+cat("e. Interquartile Range:", interquartile_range, "\n")
+z_scores <- (data_vector - mean(data_vector)) / std_deviation_value
+cat("\nThe Z-Scores are:\n")
+for(i in 1:length(data_vector))
+{
+ cat("Value:", data_vector[i], "Z-Score:", z_scores[i], "\n")
+}
      
 </pre>
         </div>
@@ -357,40 +341,27 @@ print("\nTime Taken :",dif)
 
 <pre id="code22">
 
-def knapsack(n, capacity, weights, prices):
- # Base condition
- if n == 0 or capacity == 0:
- return 0
- # If the weight of current item is greater than capacity,
- # we cannot include it
- if weights[n - 1] > capacity:
- return knapsack(n - 1, capacity, weights, prices)
- else:
- # Option 1: Include the current item
- include = prices[n - 1] + knapsack(
- n - 1,
- capacity - weights[n - 1],
- weights,
- prices
- )
- # Option 2: Do not include the current item
- exclude = knapsack(
- n - 1,
- capacity,
- weights,
- prices
- )
- # Choose the option with maximum profit
- return max(include, exclude)
-weights = [7, 3, 4, 5]
-prices = [42, 12, 40, 25]
-n = 4
-capacity = 10
-print("Knapsack Problem Solution")
-print("Weights =", weights)
-print("Prices =", prices)
-print("Capacity =", capacity)
-print("Optimal Solution =", knapsack(n, capacity, weights, prices))
+advertise<-c(11,13,14,16,16,15,15,14,13,13)
+sales<-c(50,50,55,60,65,65,65,60,60,50)
+result<-cor(advertise,sales,method="pearson")
+cat("Pearson Correlation Coefficient is : ",result,"\n")
+if(result>0.5){
+ print("Strong Positive Correlation")
+}else if(result>0.3 & result<0.5){
+ print("Moderate Positive Correlation")
+}else if(result>0 & result<0.3){
+ print("Weak Positive Correlation")
+}else if(result==0){
+ print("No Correlation")
+}else if(result<0 & result>-0.3){
+ print("Weak negative correlation")
+}else if(result< -0.3 & result> -0.5){
+ print("Moderate Negative Correlation")
+}else {
+ print("Strong Negative Correlation")
+}
+plot(advertise,sales,main="ADVERTISEMENT VS SALES",xlab="Advertisement Exp.(Rs.in
+Lakhs)",ylab="Sales Volume(Rs.in Lakhs)",pch=19,col="Blue")
 
 </pre>
 
@@ -399,38 +370,40 @@ print("Optimal Solution =", knapsack(n, capacity, weights, prices))
     <button class="copy-btn" onclick="copyCode('code33')">Copy</button>
 
 <pre id="code33">
-import itertools
-def totaldistance(route, distance_matrix):
- distance = 0
- for i in range(len(route) - 1):
- distance += distance_matrix[route[i]][route[i + 1]]
- distance += distance_matrix[route[-1]][route[0]]
- return distance
-def tsp(distance_matrix):
- n = len(distance_matrix)
- vertices = list(range(n))
- min_distance = float('inf')
- optimal_route = []
- for permutation in itertools.permutations(vertices[1:]):
- route = [0] + list(permutation)
- current_distance = totaldistance(route, distance_matrix)
- if current_distance < min_distance:
- min_distance = current_distance
- optimal_route = route
- return optimal_route, min_distance
-distance_matrix = [
- [0, 10, 15, 20],
- [10, 0, 35, 25],
- [15, 35, 0, 30],
- [20, 25, 30, 0]
-]
-route, distance = tsp(distance_matrix)
-print("Optimal route:", route + [route[0]])
-print("Minimum distance:", distance)
+x <- c(2, 4, 5, 6, 8, 11)
+y <- c(18, 12, 10, 8, 7, 5)
+equation <- lm(y ~ x)
+intercept <- coefficients(equation)[1] # a
+slope <- coefficients(equation)[2] # b
+cat("Regression Equation (Y on X):\n")
+cat("Y =", intercept, "+", slope, "X\n")
+x_value <- 7
+predict_Y <- intercept + slope * x_value
+cat("Predicted value of Y when X = 7 is:", predict_Y, "\n")
+
+    </pre>
 
     </div>
+    <div class="code-box">
+    <button class="copy-btn" onclick="copyCode('code44')">Copy</button>
+
+<pre id="code44">
+    mean_value <- 57
+sd <- 6.5
+P_X60 <- pnorm(60, mean_value, sd)
+p_50 <- pnorm(50, mean_value, sd)
+p_80 <- pnorm(80, mean_value, sd)
+prob <- p_80 - p_50
+cat("Normal Distribution Probability\n")
+cat("Mean value", mean_value, "\n")
+cat("Standard Deviation", sd, "\n")
+cat("A)Will be less than 60 minutes", P_X60, "\n")
+cat("P(X < 50)", p_50, "\n")
+cat("P(X < 80)", p_80, "\n")
+cat("B)Between 50 and 80 minutes", prob, "\n")
 
 </div>
+    </div>
 
 <script>
 
