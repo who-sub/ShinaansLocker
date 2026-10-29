@@ -287,7 +287,38 @@ marital_status
 
 <pre id="code7">
 
-nada
+library(datasets)
+data(iris)
+cat("1. Iris Dataset loaded successfully\n\n")
+cat("2. First six rows of Iris Dataset:\n")
+print(head(iris))
+cat("\n3. Summary of Iris Dataset:\n")
+print(summary(iris))
+cat("\n4. Number of rows and columns:\n")
+print(dim(iris))
+cat("\n5. Column names of Iris Dataset:\n")
+print(names(iris))
+hist(iris$Sepal.Length,
+ main = "Histogram of Sepal Length",
+ xlab = "Sepal Length"
+    plot(iris$Sepal.Width,
+ iris$Sepal.Length,
+ main = "Scatterplot of Sepal Width vs. Sepal Length",
+ xlab = "Sepal Width",
+ ylab = "Sepal Length")
+boxplot(iris$Sepal.Width,
+ iris$Sepal.Length,
+ names = c("Sepal Width", "Sepal Length"),
+ main = "Boxplot of Sepal Width and Sepal Length",
+ ylab = "Values")
+correlation <- cor(iris$Sepal.Length,
+ iris$Petal.Length,
+ method = "pearson")
+cat("\n9. Pearson Correlation between Sepal.Length and Petal.Length:\n")
+print(correlation)
+correlation_matrix <- cor(iris[, 1:4])
+cat("\n10. Correlation Matrix of Iris Dataset:\n")
+print(correlation_matrix)
 
 </pre>
 
